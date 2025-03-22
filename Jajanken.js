@@ -17,11 +17,11 @@ function getComputerChoice() {
   return rockPaperSiz;
 }
 
-function getHumanChoice() {
-  let userInput = prompt("Rock, Paper, Scissors, Shoot!").toLowerCase();
-  console.log("Human Choose: " + userInput);
-  return userInput;
-}
+// function getHumanChoice() {
+//   let userInput = prompt("Rock, Paper, Scissors, Shoot!").toLowerCase();
+//   console.log("Human Choose: " + userInput);
+//   return userInput;
+// }
 
 function playRound(humanChoice, computerChoice) {
   if (humanChoice === "rock" && computerChoice === "scissors") {
@@ -47,18 +47,39 @@ function playRound(humanChoice, computerChoice) {
   }
 }
 
-function playGame(num) {
-  let count = 0;
-  while (count < num) {
-    const humanSelection = getHumanChoice();
-    const computerSelection = getComputerChoice();
-    playRound(humanSelection, computerSelection);
-    count++;
-    console.log("");
-  }
-}
+// console.log("Rock. Paper. Scissors. Best of 5!");
 
-console.log("Rock. Paper. Scissors. Best of 5!");
-playGame(5);
-console.log("Human wins " + humanScore);
-console.log("Bot wins " + computerScore);
+// console.log("Human wins " + humanScore);
+// console.log("Bot wins " + computerScore);
+
+// const humanSelection = getHumanChoice();
+// const computerSelection = getComputerChoice();
+// playRound(humanSelection, computerSelection);
+
+//if a bug look at humanSelection
+const btnRock = document.querySelector(".rock");
+btnRock.addEventListener("click", () => {
+  const computerSelection = getComputerChoice();
+  humanSelection = "rock";
+  console.log("Human Choose: " + humanSelection);
+  playRound(humanSelection, computerSelection);
+  console.log("");
+});
+
+const btnPaper = document.querySelector(".paper");
+btnPaper.addEventListener("click", () => {
+  const computerSelection = getComputerChoice();
+  humanSelection = "paper";
+  console.log("Human Choose: " + humanSelection);
+  playRound(humanSelection, computerSelection);
+  console.log("");
+});
+
+const btnScissors = document.querySelector(".scissors");
+btnScissors.addEventListener("click", () => {
+  const computerSelection = getComputerChoice();
+  humanSelection = "scissors";
+  console.log("Human Choose: " + humanSelection);
+  playRound(humanSelection, computerSelection);
+  console.log("");
+});
