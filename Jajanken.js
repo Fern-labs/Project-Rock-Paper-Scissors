@@ -1,5 +1,6 @@
 let humanScore = 0;
 let computerScore = 0;
+let humanSelection = "";
 
 function getComputerChoice() {
   let num = Math.floor(Math.random() * 3 + 1);
@@ -16,14 +17,8 @@ function getComputerChoice() {
   return rockPaperSiz;
 }
 
-// function getHumanChoice() {
-//   let userInput = prompt("Rock, Paper, Scissors, Shoot!").toLowerCase();
-//   console.log("Human Choose: " + userInput);
-//   return userInput;
-// }
-
+const winner = document.querySelector(".winner");
 function playRound(humanChoice, computerChoice) {
-  const winner = document.querySelector(".winner");
   if (humanChoice === "rock" && computerChoice === "scissors") {
     winner.textContent = "You Win! Rock beats Scissors.";
     humanScore++;
@@ -48,6 +43,8 @@ function playRound(humanChoice, computerChoice) {
 }
 
 //if a bug look at humanSelection
+const gameOver = document.querySelector(".gameOver");
+
 const btnRock = document.querySelector(".rock");
 btnRock.addEventListener("click", () => {
   const computerSelection = getComputerChoice();
@@ -56,6 +53,7 @@ btnRock.addEventListener("click", () => {
   playRound(humanSelection, computerSelection);
   results.textContent =
     "Human wins " + humanScore + " Bot wins " + computerScore;
+  gameStop();
 });
 
 const results = document.querySelector(".results");
@@ -69,6 +67,7 @@ btnPaper.addEventListener("click", () => {
   playRound(humanSelection, computerSelection);
   results.textContent =
     "Human wins " + humanScore + " Bot wins " + computerScore;
+  gameStop();
 });
 
 const btnScissors = document.querySelector(".scissors");
@@ -80,4 +79,38 @@ btnScissors.addEventListener("click", () => {
   botChoice.textContent = "Bot Choose " + computerSelection;
   results.textContent =
     "Human wins " + humanScore + " Bot wins " + computerScore;
+  gameStop();
+});
+
+function gameStop() {
+  if (humanScore === 5) {
+    gameOver.textContent = "Game Over! Human Wins!!";
+    document.querySelectorAll(".btn").forEach((elem) => {
+      elem.disabled = true;
+    });
+  } else if (computerScore === 5) {
+    gameOver.textContent = "Game Over! Bot Wins!!";
+    document.querySelectorAll(".btn").forEach((elem) => {
+      elem.disabled = true;
+    });
+  }
+}
+
+function gameReset() {
+  humanScore = 0;
+  computerScore = 0;
+
+  document.querySelectorAll(".btn").forEach((elem) => {
+    elem.disabled = false;
+  });
+  results.textContent =
+    "Human wins " + humanScore + " Bot wins " + computerScore;
+  gameOver.textContent = "";
+  winner.textContent = "";
+  botChoice.textContent = "";
+}
+
+const gameRestart = document.querySelector(".resetGame");
+gameRestart.addEventListener("click", () => {
+  gameReset();
 });
