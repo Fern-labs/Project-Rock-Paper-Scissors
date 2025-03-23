@@ -13,7 +13,6 @@ function getComputerChoice() {
   } else if (num === 3) {
     rockPaperSiz = "scissors";
   }
-  console.log("Bot Choose: " + rockPaperSiz);
   return rockPaperSiz;
 }
 
@@ -24,62 +23,61 @@ function getComputerChoice() {
 // }
 
 function playRound(humanChoice, computerChoice) {
+  const winner = document.querySelector(".winner");
   if (humanChoice === "rock" && computerChoice === "scissors") {
-    console.log("You Win! Rock beats Scissors.");
+    winner.textContent = "You Win! Rock beats Scissors.";
     humanScore++;
   } else if (humanChoice === "paper" && computerChoice === "rock") {
-    console.log("You Win! Paper beats Rock.");
+    winner.textContent = "You Win! Paper beats Rock.";
     humanScore++;
   } else if (humanChoice === "scissors" && computerChoice === "paper") {
-    console.log("You Win! Scissors beats Paper");
+    winner.textContent = "You Win! Scissors beats Paper";
     humanScore++;
   } else if (computerChoice === "rock" && humanChoice === "scissors") {
-    console.log("You Lose! Rock beats Scissors.");
+    winner.textContent = "You Lose! Rock beats Scissors.";
     computerScore++;
   } else if (computerChoice === "paper" && humanChoice === "rock") {
-    console.log("You Lose! Paper beats Rock.");
+    winner.textContent = "You Lose! Paper beats Rock.";
     computerScore++;
   } else if (computerChoice === "scissors" && humanChoice === "paper") {
-    console.log("You Lose! Scissors beats Paper");
+    winner.textContent = "You Lose! Scissors beats Paper";
     computerScore++;
   } else {
-    console.log("Its a Tie");
+    winner.textContent = "Its a Tie";
   }
 }
-
-// console.log("Rock. Paper. Scissors. Best of 5!");
-
-// console.log("Human wins " + humanScore);
-// console.log("Bot wins " + computerScore);
-
-// const humanSelection = getHumanChoice();
-// const computerSelection = getComputerChoice();
-// playRound(humanSelection, computerSelection);
 
 //if a bug look at humanSelection
 const btnRock = document.querySelector(".rock");
 btnRock.addEventListener("click", () => {
   const computerSelection = getComputerChoice();
   humanSelection = "rock";
-  console.log("Human Choose: " + humanSelection);
+  botChoice.textContent = "Bot Choose " + computerSelection;
   playRound(humanSelection, computerSelection);
-  console.log("");
+  results.textContent =
+    "Human wins " + humanScore + " Bot wins " + computerScore;
 });
+
+const results = document.querySelector(".results");
+const botChoice = document.querySelector(".botChoice");
 
 const btnPaper = document.querySelector(".paper");
 btnPaper.addEventListener("click", () => {
   const computerSelection = getComputerChoice();
   humanSelection = "paper";
-  console.log("Human Choose: " + humanSelection);
+  botChoice.textContent = "Bot Choose " + computerSelection;
   playRound(humanSelection, computerSelection);
-  console.log("");
+  results.textContent =
+    "Human wins " + humanScore + " Bot wins " + computerScore;
 });
 
 const btnScissors = document.querySelector(".scissors");
 btnScissors.addEventListener("click", () => {
   const computerSelection = getComputerChoice();
   humanSelection = "scissors";
-  console.log("Human Choose: " + humanSelection);
+
   playRound(humanSelection, computerSelection);
-  console.log("");
+  botChoice.textContent = "Bot Choose " + computerSelection;
+  results.textContent =
+    "Human wins " + humanScore + " Bot wins " + computerScore;
 });
