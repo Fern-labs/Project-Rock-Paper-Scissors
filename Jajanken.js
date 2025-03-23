@@ -1,6 +1,18 @@
+//Variables
 let humanScore = 0;
 let computerScore = 0;
 let humanSelection = "";
+
+const gameRestart = document.querySelector(".resetGame");
+const winner = document.querySelector(".winner");
+const gameOver = document.querySelector(".gameOver");
+const btnRock = document.querySelector(".rock");
+const results = document.querySelector(".results");
+const botChoice = document.querySelector(".botChoice");
+const btnPaper = document.querySelector(".paper");
+const btnScissors = document.querySelector(".scissors");
+
+///Functions
 
 function getComputerChoice() {
   let num = Math.floor(Math.random() * 3 + 1);
@@ -17,7 +29,6 @@ function getComputerChoice() {
   return rockPaperSiz;
 }
 
-const winner = document.querySelector(".winner");
 function playRound(humanChoice, computerChoice) {
   if (humanChoice === "rock" && computerChoice === "scissors") {
     winner.textContent = "You Win! Rock beats Scissors.";
@@ -41,46 +52,6 @@ function playRound(humanChoice, computerChoice) {
     winner.textContent = "Its a Tie";
   }
 }
-
-//if a bug look at humanSelection
-const gameOver = document.querySelector(".gameOver");
-
-const btnRock = document.querySelector(".rock");
-btnRock.addEventListener("click", () => {
-  const computerSelection = getComputerChoice();
-  humanSelection = "rock";
-  botChoice.textContent = "Bot Choose " + computerSelection;
-  playRound(humanSelection, computerSelection);
-  results.textContent =
-    "Human wins " + humanScore + " Bot wins " + computerScore;
-  gameStop();
-});
-
-const results = document.querySelector(".results");
-const botChoice = document.querySelector(".botChoice");
-
-const btnPaper = document.querySelector(".paper");
-btnPaper.addEventListener("click", () => {
-  const computerSelection = getComputerChoice();
-  humanSelection = "paper";
-  botChoice.textContent = "Bot Choose " + computerSelection;
-  playRound(humanSelection, computerSelection);
-  results.textContent =
-    "Human wins " + humanScore + " Bot wins " + computerScore;
-  gameStop();
-});
-
-const btnScissors = document.querySelector(".scissors");
-btnScissors.addEventListener("click", () => {
-  const computerSelection = getComputerChoice();
-  humanSelection = "scissors";
-
-  playRound(humanSelection, computerSelection);
-  botChoice.textContent = "Bot Choose " + computerSelection;
-  results.textContent =
-    "Human wins " + humanScore + " Bot wins " + computerScore;
-  gameStop();
-});
 
 function gameStop() {
   if (humanScore === 5) {
@@ -110,7 +81,38 @@ function gameReset() {
   botChoice.textContent = "";
 }
 
-const gameRestart = document.querySelector(".resetGame");
+///Events
+
+btnRock.addEventListener("click", () => {
+  const computerSelection = getComputerChoice();
+  humanSelection = "rock";
+  botChoice.textContent = "Bot Choose " + computerSelection;
+  playRound(humanSelection, computerSelection);
+  results.textContent =
+    "Human wins " + humanScore + " Bot wins " + computerScore;
+  gameStop();
+});
+
+btnPaper.addEventListener("click", () => {
+  const computerSelection = getComputerChoice();
+  humanSelection = "paper";
+  botChoice.textContent = "Bot Choose " + computerSelection;
+  playRound(humanSelection, computerSelection);
+  results.textContent =
+    "Human wins " + humanScore + " Bot wins " + computerScore;
+  gameStop();
+});
+
+btnScissors.addEventListener("click", () => {
+  const computerSelection = getComputerChoice();
+  humanSelection = "scissors";
+  playRound(humanSelection, computerSelection);
+  botChoice.textContent = "Bot Choose " + computerSelection;
+  results.textContent =
+    "Human wins " + humanScore + " Bot wins " + computerScore;
+  gameStop();
+});
+
 gameRestart.addEventListener("click", () => {
   gameReset();
 });
