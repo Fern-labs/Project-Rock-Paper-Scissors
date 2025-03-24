@@ -6,16 +6,28 @@
     <title>Project: Rock Paper Scissors</title>
     <script src="Jajanken.js" defer></script>
     <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Play:wght@400;700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <div class="container">
-      <button class="rock btn">Rock</button>
-      <button class="paper btn">Paper</button>
-      <button class="scissors btn">Scissors</button>
-      <div class="botChoice"></div>
-      <div class="results"></div>
-      <div class="winner"></div>
-      <div class="gameOver"></div>
+      <h1>Rock, Paper, Scissors!</h1>
+      <div class="btn-container">
+        <button class="rock btn">🪨</button>
+        <button class="paper btn">📃</button>
+        <button class="scissors btn">✂️</button>
+      </div>
+
+      <div class="text-container">
+        <div class="botChoice"></div>
+        <div class="results"></div>
+        <div class="winner"></div>
+        <div class="gameOver"></div>
+      </div>
       <button class="resetGame">Reset</button>
     </div>
   </body>
